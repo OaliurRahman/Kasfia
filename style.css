@@ -1,0 +1,303 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Selection Color */
+::selection {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Animations */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Story Ring Animation */
+@keyframes storyRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.story-ring::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent, #d4d4d4, transparent);
+    animation: storyRing 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.story-item:hover .story-ring::before {
+    opacity: 1;
+}
+
+/* Audio Visualizer Bars */
+.audio-bar {
+    width: 3px;
+    background: linear-gradient(to top, #666, #fff);
+    animation: equalize 1s ease-in-out infinite;
+    border-radius: 2px;
+}
+
+.audio-bar:nth-child(1) { animation-delay: 0.0s; height: 12px; }
+.audio-bar:nth-child(2) { animation-delay: 0.2s; height: 16px; }
+.audio-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
+
+@keyframes equalize {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.5); }
+}
+
+.audio-playing .audio-bar {
+    animation-play-state: running;
+}
+
+.audio-paused .audio-bar {
+    animation-play-state: paused;
+    transform: scaleY(0.3);
+    opacity: 0.5;
+}
+
+/* Text Glow Effect */
+.text-glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Image Hover Glow */
+.image-glow:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Grain Texture Overlay */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Mobile Menu Transition */
+.mobile-menu {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Gallery Item Hover */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* Line Animation */
+.line-animate {
+    width: 0;
+    transition: width 1s ease-out;
+}
+
+.line-animate.revealed {
+    width: 100%;
+}
+
+/* Fade In Up Animation Classes */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom Cursor for Interactive Elements */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Prevent Horizontal Scroll */
+body {
+    overflow-x: hidden;
+}
+
+/* Loading State */
+.loading {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.loaded {
+    opacity: 1;
+}
+/* Modal Transitions */
+#storyModal, #lightboxModal {
+    transition: opacity 0.3s ease;
+}
+
+#storyModal.hidden, #lightboxModal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#storyModal:not(.hidden), #lightboxModal:not(.hidden) {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+}
+/* Quote Slider Styles */
+.quote-slider {
+    position: relative;
+}
+
+.quote-slides {
+    overflow: hidden;
+}
+
+.quote-track {
+    display: flex;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.quote-slide {
+    width: 100%;
+    flex-shrink: 0;
+    opacity: 1;
+}
+
+/* Quote Line Animation - Controlled by JS */
+.quote-line {
+    display: block;
+    will-change: opacity, transform, filter;
+}
+
+/* Quote Navigation Hover Effects */
+.quote-slider button {
+    outline: none;
+}
+
+.quote-slider button:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments for quote slider */
+@media (max-width: 768px) {
+    .quote-slide {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .quote-line {
+        font-size: 1.25rem !important;
+        line-height: 1.6 !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .quote-slider button {
+        display: none;
+    }
+}
+
+/* Ensure gallery images fill their containers consistently */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Center only the last two gallery images and set their size to match the screenshot */
+.last-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* matches md:gap-6 */
+    max-width: 42rem; /* align with grid max-w-2xl */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.last-row .gallery-item {
+    /* make each item equal to one column of the 3-column grid */
+    width: calc((100% - 3rem) / 3);
+    max-width: calc((100% - 3rem) / 3);
+}
+
+@media (max-width: 767px) {
+    .last-row .gallery-item {
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
+}
+
+/* (Reverted gallery-centering changes - gallery uses original responsive behavior) */
+
+
+
+/* Wave animation for Kashfia text */
+.kashfia-wave span {
+    display: inline-block;
+    animation: kashfiaWave 2s ease-in-out infinite;
+}
+
+.kashfia-wave span:nth-child(1) { animation-delay: 0s; }
+.kashfia-wave span:nth-child(2) { animation-delay: 0.1s; }
+.kashfia-wave span:nth-child(3) { animation-delay: 0.2s; }
+.kashfia-wave span:nth-child(4) { animation-delay: 0.3s; }
+.kashfia-wave span:nth-child(5) { animation-delay: 0.4s; }
+.kashfia-wave span:nth-child(6) { animation-delay: 0.5s; }
+/* যদি আরও letters থাকে তাহলে এই pattern extend করো */
+
+@keyframes kashfiaWave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); } /* subtle wave, adjust if needed */
+}
+
+/* Stop animation on hover */
+.kashfia-wave:hover span {
+    animation-play-state: paused;
+}
+
